@@ -104,7 +104,7 @@ def Solicitud_api_view(request):
 def Solicitud_detail_view(request,pk=None):
     if request.method == 'GET':
         solicitud = Solicitud.objects.filter(id = pk).first()
-        solicitudes_serializer = SolicitudSerializerBase(solicitud)
+        solicitudes_serializer = SolicitudSerializerList(solicitud)
         return Response(solicitudes_serializer.data)
     
     elif request.method == 'PUT':

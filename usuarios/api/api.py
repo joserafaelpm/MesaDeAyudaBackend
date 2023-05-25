@@ -2,7 +2,7 @@ from django.contrib.auth.hashers import make_password
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from usuarios.models import Usuario , Rol 
-from usuarios.api.serializers import UsuarioSerializer, RolSerializer
+from usuarios.api.serializers import UsuarioSerializer, RolSerializer, UsuarioSerializerCreate
 
 #----------------------------------------------------------------
 # CRUD Usuarios
@@ -15,7 +15,7 @@ def user_api_view(request):
         return Response(usuarios_serializer.data)
     
     elif request.method == 'POST':
-        usuario_serializer = UsuarioSerializer(data = request.data)
+        usuario_serializer = UsuarioSerializerCreate(data = request.data)
         if usuario_serializer.is_valid():
             usuario_serializer.validated_data["password"] = make_password(usuario_serializer.validated_data["password"])
             usuario_serializer.save()

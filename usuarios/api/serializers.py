@@ -18,6 +18,11 @@ class UsuarioSerializer(serializers.ModelSerializer):
         model = Usuario
         fields = '__all__'
 
+class UsuarioSerializerCreate(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        exclude = ['id']
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
